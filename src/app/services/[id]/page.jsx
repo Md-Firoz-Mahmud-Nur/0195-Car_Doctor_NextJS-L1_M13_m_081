@@ -42,43 +42,88 @@ const page = async ({ params }) => {
 
         <div className="mt-32 grid grid-cols-3 gap-6">
           <div className="col-span-2">
-            <div className="flex h-full flex-col gap-12">
-              <div className="relative w-full flex-1">
+            <div className="flex flex-col gap-12">
+              <div className="relative h-[400px] w-full">
                 <Image
                   src={img}
                   fill
                   alt="service"
-                  className="rounded-lg object-cover"
+                  className="h-full rounded-lg object-cover"
                 ></Image>
               </div>
               <h1 className="text-Dark-01 text-4xl font-bold">{title}</h1>
             </div>
           </div>
-          <div className="bg-Dark-07 rounded-lg p-10 font-semibold">
-            <h2 className="text-Dark-01 text-2xl font-bold">Services</h2>
+          <div className="col-span-1 flex flex-col gap-7">
+            <div className="bg-Dark-07 rounded-lg p-10 font-semibold">
+              <h2 className="text-Dark-01 text-2xl font-bold">Services</h2>
 
-            {services.slice(0, 5).map((service) => (
-              <div
-                key={service._id}
-                className="group hover:bg-primary mt-5 flex items-center justify-between rounded-md bg-white p-4 hover:text-white"
-              >
-                <div>{service.title}</div>
+              {services.slice(0, 5).map((service) => (
+                <div
+                  key={service._id}
+                  className="group hover:bg-primary mt-5 flex items-center justify-between rounded-md bg-white p-4 hover:text-white"
+                >
+                  <div>{service.title}</div>
+                  <Image
+                    src="/assets/RightArrowPrimaryColor.svg"
+                    width={24}
+                    height={24}
+                    alt="Right Arrow"
+                    className="group-hover:hidden"
+                  ></Image>
+                  <Image
+                    src="/assets/RightArrow.svg"
+                    width={24}
+                    height={24}
+                    alt="Right Arrow"
+                    className="hidden group-hover:block"
+                  ></Image>
+                </div>
+              ))}
+            </div>
+            <div className="bg-Dark-01 flex flex-col gap-5 rounded-lg p-10 text-white">
+              <p className="text-2xl font-bold">Download</p>
+              <div className="flex gap-2.5">
                 <Image
-                  src="/assets/RightArrowPrimaryColor.svg"
-                  width={24}
-                  height={24}
-                  alt="Right Arrow"
-                  className="group-hover:hidden"
+                  src="/assets/Pdf.svg"
+                  width={30}
+                  height={30}
+                  alt="pdf"
                 ></Image>
-                <Image
-                  src="/assets/RightArrow.svg"
-                  width={24}
-                  height={24}
-                  alt="Right Arrow"
-                  className="hidden group-hover:block"
-                ></Image>
+                <div className="grow">
+                  <p className="text-lg font-semibold">Our Brochure</p>
+                  <p className="text-Dark-04">Download</p>
+                </div>
+                <div className="bg-primary rounded-md p-4">
+                  <Image
+                    src="/assets/RightArrow.svg"
+                    width={24}
+                    height={24}
+                    alt="Right Arrow"
+                  ></Image>
+                </div>
               </div>
-            ))}
+              <div className="flex gap-2.5">
+                <Image
+                  src="/assets/Pdf.svg"
+                  width={30}
+                  height={30}
+                  alt="pdf"
+                ></Image>
+                <div className="grow">
+                  <p className="text-lg font-semibold">Company Details</p>
+                  <p className="text-Dark-04">Download</p>
+                </div>
+                <div className="bg-primary rounded-md p-4">
+                  <Image
+                    src="/assets/RightArrow.svg"
+                    width={24}
+                    height={24}
+                    alt="Right Arrow"
+                  ></Image>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
