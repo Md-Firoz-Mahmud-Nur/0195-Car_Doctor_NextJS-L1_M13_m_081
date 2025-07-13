@@ -20,7 +20,7 @@ const page = async ({ params }) => {
         <div className="relative h-[300px] rounded-lg">
           <Image
             className="absolute top-0 left-0 h-full w-full rounded-lg object-cover"
-            src={img}
+            src="/assets/images/checkout/checkout.png"
             alt="service"
             width={1920}
             height={1080}
@@ -43,7 +43,7 @@ const page = async ({ params }) => {
         <div className="mt-32 grid grid-cols-3 gap-6">
           <div className="col-span-2">
             <div className="flex flex-col gap-12">
-              <div className="relative h-[400px] w-full">
+              <div className="relative aspect-video">
                 <Image
                   src={img}
                   fill
@@ -97,6 +97,7 @@ const page = async ({ params }) => {
                           src="/assets/Circle.svg"
                           width={83}
                           height={83}
+                          alt="circle"
                         ></Image>
                         <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-white">
                           {step.number}
@@ -112,6 +113,21 @@ const page = async ({ params }) => {
                       </p>
                     </div>
                   ))}
+                </div>
+                <div className="relative aspect-video">
+                  <Image
+                    src="/assets/images/banner/2.jpg"
+                    fill
+                    alt="video"
+                    className="h-full rounded-lg object-cover object-top"
+                  ></Image>
+                  <Image
+                    src="/assets/Play.svg"
+                    width={128}
+                    height={128}
+                    alt="play"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                  ></Image>
                 </div>
               </div>
             </div>
