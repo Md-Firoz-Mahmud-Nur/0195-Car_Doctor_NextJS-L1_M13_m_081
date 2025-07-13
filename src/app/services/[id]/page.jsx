@@ -124,6 +124,29 @@ const page = async ({ params }) => {
                 </div>
               </div>
             </div>
+            <div className="bg-Dark-01 flex flex-col gap-5 rounded-lg p-10 text-white">
+              <Image
+                src="/assets/logoFooter.svg"
+                alt="logo"
+                width={141}
+                height={114}
+                className="self-center"
+              />
+              <p className="text-center text-xl leading-9 font-bold">
+                Need Help? We Are Here To Help You
+              </p>
+              <div className="relative rounded-lg bg-white pt-5 pb-10 text-center">
+                <h3 className="text-primary text-xl leading-9 font-semibold">
+                  Car Doctor <span className="text-Dark-01">Special</span>
+                </h3>
+                <p className="text-Dark-03 leading-9 font-semibold">
+                  Save up to <span className="text-primary">60% off</span>
+                </p>
+                <div className="bg-primary absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 rounded-lg px-8 py-4 text-lg font-semibold text-nowrap">
+                  Get A Quote
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
