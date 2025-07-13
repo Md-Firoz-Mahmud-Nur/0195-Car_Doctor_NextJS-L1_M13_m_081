@@ -52,6 +52,27 @@ const page = async ({ params }) => {
                 ></Image>
               </div>
               <h1 className="text-Dark-01 text-4xl font-bold">{title}</h1>
+              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
+              <div className="grid grid-cols-2 gap-6">
+                {facility.map((singleFacility, index) => (
+                  <div
+                    key={index}
+                    className="bg-Dark-07 border-primary rounded-lg border-t-2 p-10"
+                  >
+                    <h4 className="text-Dark-02 text-xl font-bold">
+                      {singleFacility.name}
+                    </h4>
+                    <p className="text-Dark-03 leading-7 capitalize">
+                      {singleFacility.details}
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
+              <h1 className="text-Dark-01 text-4xl font-bold">
+                3 Simple Steps to Process
+              </h1>
+              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
             </div>
           </div>
           <div className="col-span-1 flex flex-col gap-7">
@@ -124,7 +145,7 @@ const page = async ({ params }) => {
                 </div>
               </div>
             </div>
-            <div className="bg-Dark-01 flex flex-col gap-5 rounded-lg p-10 text-white">
+            <div className="bg-Dark-01 flex flex-col gap-5 rounded-lg p-10 pb-20 text-white">
               <Image
                 src="/assets/logoFooter.svg"
                 alt="logo"
@@ -133,7 +154,7 @@ const page = async ({ params }) => {
                 className="self-center"
               />
               <p className="text-center text-xl leading-9 font-bold">
-                Need Help? We Are Here To Help You
+                Need Help? We Are Here <br /> To Help You
               </p>
               <div className="relative rounded-lg bg-white pt-5 pb-10 text-center">
                 <h3 className="text-primary text-xl leading-9 font-semibold">
@@ -147,46 +168,10 @@ const page = async ({ params }) => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="bg-gray-100 p-10">
-          <h2 className="text-3xl font-bold text-orange-600">{title}</h2>
-          <p>{description}</p>
-        </div>
-      </div>
-
-      <div className="my-6">
-        <div className="grid grid-cols-3 gap-8">
-          <div className="col-span-2 grid grid-cols-2 gap-6">
-            {facility.map((item, index) => (
-              <div
-                className="rounded-xl border-t-4 border-t-rose-500 bg-rose-100 p-4"
-                key={index}
-              >
-                <h2 className="text-xl font-bold">{item?.name}</h2>
-                <p>{item?.details}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-gray-100 p-6">
-            <Image
-              className="h-40 w-full object-cover"
-              src={"/assets/images/checkout/checkout.png"}
-              alt="checkout service"
-              width={400}
-              height={400}
-            />
-            <div className="my-4 flex">
-              <h2 className="text-xl font-bold">Price: </h2>
-              <p className="text-2xl text-rose-500"> ${price}</p>
+            <div className="text-4xl font-bold">Price $250.00</div>
+            <div className="btn-lg btn btn-primary text-lg font-semibold">
+              Proceed Checkout
             </div>
-            <Link href={`/checkout/${_id}`}>
-              <button className="mt-2 w-full rounded-lg bg-rose-500 px-3 py-2">
-                Check out
-              </button>
-            </Link>
           </div>
         </div>
       </div>
