@@ -41,18 +41,41 @@ const page = async ({ params }) => {
         </div>
 
         <div className="mt-32 grid grid-cols-3 gap-6">
-          <div className="col-span-2 bg-red-400"></div>
+          <div className="col-span-2">
+            <div className="flex h-full flex-col gap-12">
+              <div className="relative w-full flex-1">
+                <Image
+                  src={img}
+                  fill
+                  alt="service"
+                  className="rounded-lg object-cover"
+                ></Image>
+              </div>
+              <h1 className="text-Dark-01 text-4xl font-bold">{title}</h1>
+            </div>
+          </div>
           <div className="bg-Dark-07 rounded-lg p-10 font-semibold">
             <h2 className="text-Dark-01 text-2xl font-bold">Services</h2>
 
             {services.slice(0, 5).map((service) => (
-              <div className="hover:bg-primary mt-5 flex items-center justify-between rounded-md bg-white p-4 hover:text-white">
-                <div>{service.title}</div>{" "}
+              <div
+                key={service._id}
+                className="group hover:bg-primary mt-5 flex items-center justify-between rounded-md bg-white p-4 hover:text-white"
+              >
+                <div>{service.title}</div>
                 <Image
                   src="/assets/RightArrowPrimaryColor.svg"
                   width={24}
                   height={24}
                   alt="Right Arrow"
+                  className="group-hover:hidden"
+                ></Image>
+                <Image
+                  src="/assets/RightArrow.svg"
+                  width={24}
+                  height={24}
+                  alt="Right Arrow"
+                  className="hidden group-hover:block"
                 ></Image>
               </div>
             ))}
