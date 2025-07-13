@@ -51,28 +51,69 @@ const page = async ({ params }) => {
                   className="h-full rounded-lg object-cover"
                 ></Image>
               </div>
-              <h1 className="text-Dark-01 text-4xl font-bold">{title}</h1>
-              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
-              <div className="grid grid-cols-2 gap-6">
-                {facility.map((singleFacility, index) => (
-                  <div
-                    key={index}
-                    className="bg-Dark-07 border-primary rounded-lg border-t-2 p-10"
-                  >
-                    <h4 className="text-Dark-02 text-xl font-bold">
-                      {singleFacility.name}
-                    </h4>
-                    <p className="text-Dark-03 leading-7 capitalize">
-                      {singleFacility.details}
-                    </p>
-                  </div>
-                ))}
+              <div className="flex flex-col gap-7">
+                <h1 className="text-Dark-01 text-4xl font-bold">{title}</h1>
+                <p className="text-Dark-03 leading-7 capitalize">
+                  {description}
+                </p>
+                <div className="grid grid-cols-2 gap-6">
+                  {facility.map((singleFacility, index) => (
+                    <div
+                      key={index}
+                      className="bg-Dark-07 border-primary rounded-lg border-t-2 p-10"
+                    >
+                      <h4 className="text-Dark-02 text-xl font-bold">
+                        {singleFacility.name}
+                      </h4>
+                      <p className="text-Dark-03 leading-7 capitalize">
+                        {singleFacility.details}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-Dark-03 leading-7 capitalize">
+                  {description}
+                </p>
               </div>
-              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
-              <h1 className="text-Dark-01 text-4xl font-bold">
-                3 Simple Steps to Process
-              </h1>
-              <p className="text-Dark-03 leading-7 capitalize">{description}</p>
+              <div className="flex flex-col gap-7">
+                <h1 className="text-Dark-01 text-4xl font-bold">
+                  3 Simple Steps to Process
+                </h1>
+                <p className="text-Dark-03 leading-7 capitalize">
+                  {description}
+                </p>
+                <div className="grid grid-cols-3 gap-6">
+                  {[
+                    { number: "01", title: "Step One" },
+                    { number: "02", title: "Step Two" },
+                    { number: "03", title: "Step Three" },
+                  ].map((step, index) => (
+                    <div
+                      key={index}
+                      className="border-Dark-06 space-y-5 rounded-lg border p-10 text-center"
+                    >
+                      <div className="relative flex justify-center">
+                        <Image
+                          src="/assets/Circle.svg"
+                          width={83}
+                          height={83}
+                        ></Image>
+                        <p className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl font-bold text-white">
+                          {step.number}
+                        </p>
+                      </div>
+
+                      <h3 className="text-Dark-01 text-xl font-bold uppercase">
+                        {step.title}
+                      </h3>
+                      <p className="text-Dark-03 leading-7 capitalize">
+                        It Uses A Dictionary <br />
+                        Of Over 200.
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
           <div className="col-span-1 flex flex-col gap-7">
