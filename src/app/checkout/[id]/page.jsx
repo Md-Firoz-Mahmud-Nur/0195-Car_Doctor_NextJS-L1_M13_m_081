@@ -4,6 +4,7 @@ import Hero from "@/components/shared/Hero";
 import { getServiceDetails } from "@/services/getServices";
 import { useSession } from "next-auth/react";
 import * as React from "react";
+import { redirect } from "next/navigation";
 
 const Checkout = ({ params }) => {
   const { id } = React.use(params);
@@ -28,9 +29,10 @@ const Checkout = ({ params }) => {
       address: event.target.address.value,
       dueDate: event.target.dueDate.value,
       message: event.target.message.value,
+      img: img,
     };
 
-    const resp = await fetch("http://localhost:3000/checkout/api/newBooking", {
+    const resp = await fetch("http://localhost:3000/checkout/api/new-booking", {
       method: "POST",
       body: JSON.stringify(newBooking),
       headers: {
@@ -40,6 +42,7 @@ const Checkout = ({ params }) => {
     const response = await resp?.json();
     console.log(response);
     event.target.reset();
+    redirect("/my-booking");
   };
 
   useEffect(() => {

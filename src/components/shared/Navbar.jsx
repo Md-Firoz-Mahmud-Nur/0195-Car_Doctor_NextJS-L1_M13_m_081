@@ -21,6 +21,10 @@ const Navbar = () => {
       path: "/services",
     },
     {
+      title: "My Booking",
+      path: "/my-booking",
+    },
+    {
       title: "Blog",
       path: "/blog",
     },
@@ -51,7 +55,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-Dark-02"
           >
             {navItems.map((item) => (
               <li key={item.title}>
@@ -66,7 +70,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 text-Dark-02 text-lg font-semibold">
           {navItems.map((item) => (
             <li key={item.title}>
               <Link href={item.path}>{item.title}</Link>
