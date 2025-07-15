@@ -11,7 +11,7 @@ const Page = () => {
   const [bookings, setBooking] = useState([]);
   const loadData = async () => {
     const resp = await fetch(
-      `http://localhost:3000/my-booking/api/${session?.data?.user?.email}`,
+      `${process.env.BASE_URL}/my-booking/api/${session?.data?.user?.email}`,
     );
     const data = await resp.json();
     setBooking(data?.myBookings);
@@ -31,7 +31,7 @@ const Page = () => {
     if (result.isConfirmed) {
       try {
         const deleted = await fetch(
-          `http://localhost:3000/my-booking/api/booking/${id}`,
+          `${process.env.BASE_URL}/my-booking/api/booking/${id}`,
           {
             method: "DELETE",
           },

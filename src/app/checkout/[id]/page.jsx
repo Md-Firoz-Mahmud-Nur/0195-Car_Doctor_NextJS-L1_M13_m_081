@@ -32,13 +32,16 @@ const Checkout = ({ params }) => {
       img: img,
     };
 
-    const resp = await fetch("http://localhost:3000/checkout/api/new-booking", {
-      method: "POST",
-      body: JSON.stringify(newBooking),
-      headers: {
-        "content-type": "application/json",
+    const resp = await fetch(
+      `${process.env.BASE_URL}/checkout/api/new-booking`,
+      {
+        method: "POST",
+        body: JSON.stringify(newBooking),
+        headers: {
+          "content-type": "application/json",
+        },
       },
-    });
+    );
     const response = await resp?.json();
     toast.success(response?.message);
     event.target.reset();
