@@ -18,3 +18,16 @@ export const DELETE = async (request, { params }) => {
     return NextResponse.json({ message: "Something Went Wrong" });
   }
 };
+
+export const GET = async (request, { params }) => {
+  const db = await connectDB();
+  const bookingsCollection = db.collection("bookings");
+  try {
+    const resp = await bookingsCollection.findOne({
+      _id: new ObjectId(params.id),
+    });
+    return NextResponse.json({ message: "booking found", data: resp });
+  } catch (error) {
+    return NextResponse.json({ message: "Something Went Wrong" });
+  }
+};
