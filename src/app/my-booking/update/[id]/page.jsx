@@ -1,58 +1,29 @@
 "use client";
-import { useEffect, useState } from "react";
 import Hero from "@/components/shared/Hero";
-import { getServiceDetails } from "@/services/getServices";
 import { useSession } from "next-auth/react";
-import * as React from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { useEffect, useState } from "react";
 
-const Checkout = ({ params }) => {
-  const { id } = React.use(params);
+const page = ({ params }) => {
   const { data } = useSession();
-  const [service, setService] = useState({});
-
-  const loadService = async () => {
-    const details = await getServiceDetails(id);
-    setService(details.services);
-  };
-  const { _id, title, description, img, price, facility } = service || {};
-
-  const handleBooking = async (event) => {
-    event.preventDefault();
-    const newBooking = {
-      email: data?.user?.email,
-      name: data?.user?.name,
-      service: title,
-      serviceId: _id,
-      price: price,
-      phone: event.target.phone.value,
-      address: event.target.address.value,
-      dueDate: event.target.dueDate.value,
-      message: event.target.message.value,
-      img: img,
-    };
-
-    const resp = await fetch("http://localhost:3000/checkout/api/new-booking", {
-      method: "POST",
-      body: JSON.stringify(newBooking),
-      headers: {
-        "content-type": "application/json",
-      },
-    });
-    const response = await resp?.json();
-    toast.success(response?.message);
-    event.target.reset();
+  const [booking, setBooking] = useState({});
+  const loadBooking = async () => {
+    const { id } = await params;
+    const bookingDetails = await fetch(
+      `http://localhost:3000/my-booking/api/booking/${id}`,
+    );
+    const data = await bookingDetails.json();
+    setBooking(data?.data);
   };
 
   useEffect(() => {
-    loadService();
-  }, [id]);
+    loadBooking();
+  }, [params]);
 
   return (
     <div className="container mx-auto my-12">
-      <Hero title={"Check Out"} path={"Home/Checkout"}></Hero>
+      <Hero title={"Edit Booking"} path={"Home/Edit Booking"}></Hero>
       <div className="bg-Dark-07 mt-32 rounded-lg p-24">
-        <form onSubmit={handleBooking}>
+        <form>
           <div className="grid grid-cols-2 gap-6">
             <input
               defaultValue={data?.user?.name}
@@ -61,12 +32,13 @@ const Checkout = ({ params }) => {
               readOnly
             ></input>
             <input
-              defaultValue={price}
+              defaultValue={booking?.price}
               className="placeholder:text-Dark-04 rounded-lg bg-white px-6 py-4 placeholder:leading-7"
               placeholder="Price"
               readOnly
             ></input>
             <input
+              defaultValue={booking?.phone}
               name="phone"
               className="placeholder:text-Dark-04 rounded-lg bg-white px-6 py-4 placeholder:leading-7"
               placeholder="Your Phone"
@@ -79,6 +51,7 @@ const Checkout = ({ params }) => {
               readOnly
             ></input>
             <input
+              defaultValue={booking?.address}
               name="address"
               className="placeholder:text-Dark-04 rounded-lg bg-white px-6 py-4 placeholder:leading-7"
               placeholder="Address"
@@ -93,6 +66,7 @@ const Checkout = ({ params }) => {
               required
             ></input>
             <textarea
+              defaultValue={booking?.message}
               name="message"
               rows={5}
               placeholder="Your Message"
@@ -104,9 +78,8 @@ const Checkout = ({ params }) => {
           </div>
         </form>
       </div>
-      <ToastContainer></ToastContainer>
     </div>
   );
 };
 
-export default Checkout;
+export default page;

@@ -1,6 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { MdCancel } from "react-icons/md";
 import Swal from "sweetalert2";
@@ -110,7 +111,12 @@ const Page = () => {
             <div className="text-Dark-02 flex flex-1/2 justify-between gap-7 text-xl leading-7 font-semibold">
               <p>${booking?.price}</p>
               <p>{booking?.dueDate}</p>
-              <button className="btn btn-primary">Edit</button>
+              <Link
+                href={`/my-booking/update/${booking._id}`}
+                className="btn btn-primary"
+              >
+                Edit
+              </Link>
             </div>
           </div>
         ))}
