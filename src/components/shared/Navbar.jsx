@@ -35,7 +35,7 @@ const Navbar = () => {
   ];
   return (
     <div className="navbar container mx-auto">
-      <div className="navbar-start">
+      <div className="navbar-start w-1/4">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -55,7 +55,7 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-Dark-02"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box text-Dark-02 z-1 mt-3 w-52 p-2 shadow"
           >
             {navItems.map((item) => (
               <li key={item.title}>
@@ -70,7 +70,7 @@ const Navbar = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 text-Dark-02 text-lg font-semibold">
+        <ul className="menu menu-horizontal text-Dark-02 px-1 text-lg font-semibold">
           {navItems.map((item) => (
             <li key={item.title}>
               <Link href={item.path}>{item.title}</Link>
