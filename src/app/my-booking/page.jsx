@@ -6,7 +6,6 @@ import { MdCancel } from "react-icons/md";
 
 const Page = () => {
   const session = useSession();
-  console.log(session);
   const [bookings, setBooking] = useState([]);
   const loadData = async () => {
     const resp = await fetch(
@@ -14,6 +13,21 @@ const Page = () => {
     );
     const data = await resp.json();
     setBooking(data?.myBookings);
+  };
+
+  const handleDelete = async (id) => {
+    const deleted = await fetch(
+      `http://localhost:3000/my-booking/api/booking/${id}`,
+      {
+        method: "DELETE",
+      },
+    );
+    console.log(deleted);
+    const resp = await deleted.json();
+
+    if (resp?.response?.deletedCount > 0) {
+      loadData();
+    }
   };
 
   useEffect(() => {
@@ -48,7 +62,10 @@ const Page = () => {
         {bookings.map((booking) => (
           <div key={booking._id} className="flex items-center justify-between">
             <div className="flex flex-1/2 items-center gap-7">
-              <MdCancel className="hover:text-primary size-10"></MdCancel>
+              <MdCancel
+                onClick={() => handleDelete(booking._id)}
+                className="hover:text-primary size-10"
+              ></MdCancel>
               <Image
                 src={booking?.img}
                 height={150}
