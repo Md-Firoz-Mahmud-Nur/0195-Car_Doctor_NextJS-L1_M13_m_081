@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { MdCancel } from "react-icons/md";
+import Swal from "sweetalert2";
 
 const Page = () => {
   const session = useSession();
@@ -16,17 +17,46 @@ const Page = () => {
   };
 
   const handleDelete = async (id) => {
-    const deleted = await fetch(
-      `http://localhost:3000/my-booking/api/booking/${id}`,
-      {
-        method: "DELETE",
-      },
-    );
-    console.log(deleted);
-    const resp = await deleted.json();
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    });
 
-    if (resp?.response?.deletedCount > 0) {
-      loadData();
+    if (result.isConfirmed) {
+      try {
+        const deleted = await fetch(
+          `http://localhost:3000/my-booking/api/booking/${id}`,
+          {
+            method: "DELETE",
+          },
+        );
+
+        const resp = await deleted.json();
+        console.log(resp);
+
+        if (resp?.response?.deletedCount > 0) {
+          loadData(); // refresh data after deletion
+
+          await Swal.fire({
+            title: "Deleted!",
+            text: "Your file has been deleted.",
+            icon: "success",
+          });
+        }
+      } catch (error) {
+        console.error("Error deleting:", error);
+
+        await Swal.fire({
+          title: "Error!",
+          text: "Something went wrong while deleting.",
+          icon: "error",
+        });
+      }
     }
   };
 

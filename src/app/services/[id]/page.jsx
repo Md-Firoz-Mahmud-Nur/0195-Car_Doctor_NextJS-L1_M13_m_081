@@ -10,8 +10,8 @@ export const metadata = {
 };
 
 const page = async ({ params }) => {
-  const details = await getServiceDetails(params.id);
-  console.log(details);
+  const { id } = await params;
+  const details = await getServiceDetails(id);
   const { _id, title, description, img, price, facility } = details.services;
   const { services } = await getServices();
 

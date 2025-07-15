@@ -4,7 +4,7 @@ import Hero from "@/components/shared/Hero";
 import { getServiceDetails } from "@/services/getServices";
 import { useSession } from "next-auth/react";
 import * as React from "react";
-import { redirect } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
 
 const Checkout = ({ params }) => {
   const { id } = React.use(params);
@@ -40,9 +40,8 @@ const Checkout = ({ params }) => {
       },
     });
     const response = await resp?.json();
-    console.log(response);
+    toast.success(response?.message);
     event.target.reset();
-    redirect("/my-booking");
   };
 
   useEffect(() => {
@@ -104,6 +103,7 @@ const Checkout = ({ params }) => {
           </div>
         </form>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
