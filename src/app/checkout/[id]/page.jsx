@@ -13,6 +13,7 @@ const Checkout = ({ params }) => {
 
   const loadService = async () => {
     const details = await getServiceDetails(id);
+    console.log(details)
     setService(details.services);
   };
   const { _id, title, description, img, price, facility } = service || {};
@@ -33,7 +34,7 @@ const Checkout = ({ params }) => {
     };
 
     const resp = await fetch(
-      `${process.env.BASE_URL}/checkout/api/new-booking`,
+      `${process.env.NEXT_PUBLIC_BASE_URL}/checkout/api/new-booking`,
       {
         method: "POST",
         body: JSON.stringify(newBooking),

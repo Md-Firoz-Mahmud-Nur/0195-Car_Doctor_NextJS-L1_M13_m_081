@@ -14,13 +14,16 @@ const Signup = () => {
       password: form.password.value,
     };
     console.log(newUser);
-    const response = await fetch(`${process.env.BASE_URL}/signup/api`, {
-      method: "POST",
-      body: JSON.stringify(newUser),
-      headers: {
-        "content-type": "application/json",
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL}/signup/api`,
+      {
+        method: "POST",
+        body: JSON.stringify(newUser),
+        headers: {
+          "content-type": "application/json",
+        },
       },
-    });
+    );
     console.log(response);
     if (response.status === 200) {
       event.target.reset();

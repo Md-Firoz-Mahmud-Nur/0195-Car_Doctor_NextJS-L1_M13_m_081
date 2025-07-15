@@ -6,7 +6,7 @@ import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
 
 const handler = NextAuth({
-  secret: process.env.NEXT_AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
   sessions: { strategy: "jwt", maxAge: 30 * 24 * 60 * 60 },
   providers: [
     CredentialsProvider({
