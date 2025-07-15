@@ -4,8 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { signIn } from "next-auth/react";
+import { useSearchParams } from "next/navigation";
 
 const Login = () => {
+  const searchParams = useSearchParams();
+  const path = searchParams.get("redirect");
+
   const handleLogin = async (event) => {
     console.log("login");
     event.preventDefault();
@@ -16,7 +20,8 @@ const Login = () => {
     const response = await signIn("credentials", {
       email,
       password,
-      redirect: false,
+      redirect: true,
+      callbackUrl: path ? path : "/",
     });
     console.log(response);
   };
